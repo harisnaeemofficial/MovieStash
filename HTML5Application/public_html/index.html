@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+
+	<!-- Meta Tags -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>MovieStash</title>
+
+	<!-- Favicon -->
+	<!-- <link rel="icon" type="image/png" href="img/favicon.png"> -->
+	<link rel="shortcut icon" type="image/ico" href="favicon.png" />
+
+	<!--build:js js/main.min.js -->
+	<script type="text/javascript" src="js/libs/iscroll.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<!-- endbuild -->
+
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Angular icroll -->
+    <script type="text/javascript" src="js/libs/angular-iscroll.js"></script>
+    <!-- End -->
+
+	<!-- Stylesheets -->
+	<!--build:css css/styles.min.css-->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!--endbuild-->
+
+</head>
+<body ng-controller="BodyCtrl as app" ng-click="closeAllFields();" ng-class="{'iscroll-on': app.iScrollState.useIScroll, 'iscroll-off': !app.iScrollState.useIScroll}">
+
+	<header ng-controller="HeaderCtrl" id="header" class="clearfix">
+		
+		<h1 class="main-title">{{appDetails.title}}</h1>
+		
+		<nav class="nav l-pull-left">
+			
+			<div ng-click="clearAll();" ng-class="{isCategoryActive: nav.isActive('/movies')}" id="loadMovies" class="nav-item nav-item-category l-position-relative">
+				<a href="#/movies">Movies</a>
+			</div>
+
+			<div ng-click="clearAll();" ng-class="{isCategoryActive: nav.isActive('/series')}" id="loadSeries" class="nav-item nav-item-category l-position-relative">
+				<a href="#/series">Series</a>
+			</div>
+
+			<div ng-click="clearAll();" ng-class="{isCategoryActive: nav.isActive('/anime')}" id="loadAnime" class="nav-item nav-item-category l-position-relative">
+				<a href="#/anime">Anime</a>
+			</div>
+
+		</nav>
+
+		<nav class="nav l-pull-left">
+			<div ng-click="showGenreFunc(); $event.stopPropagation();" class="nav-item nav-item-select l-position-relative">
+
+				<span>Genre</span>&nbsp; 
+				<span class="current-category">{{appDetails.currentGenre}}</span>&nbsp; 
+				<i class="fa fa-caret-down" aria-hidden="true"></i>
+
+				<div ng-show="showGenre" class="select-container">	
+
+					<div class="iscroll-wrapper-select" iscroll>
+						<div class="iscroll-scroller-select">
+
+							<!--  is-option-selected -->
+				
+							<ul class="select">
+								<li ng-repeat="item in genres" ng-click="filter(item.genre)" ng-class="{isOptionSelected: gen.isActive(item.genre)}" class="option">{{item.genre}}</li>
+							</ul>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div ng-click="showSortByFunc(); $event.stopPropagation();" class="nav-item nav-item-select l-position-relative">
+
+				<span>Sort by</span>&nbsp; 
+				<span class="current-category">{{appDetails.currentType}}</span>&nbsp; 
+				<i class="fa fa-caret-down" aria-hidden="true"></i>
+
+				<div ng-show="showSortby" class="select-container">
+
+					<ul class="select">
+						<li ng-repeat="item in options" ng-click="sort(item.option, item.sort)" ng-class="{isOptionSelected: srt.isActive(item.option)}" class="option">{{item.option}}</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</nav>
+
+		<nav class="nav l-pull-right">
+			
+			<div class="nav-item nav-item-icon l-position-relative">
+				<i ng-click="showSearchboxFunc(); focusInput(); $event.stopPropagation();" class="fa fa-search" aria-hidden="true"></i>&nbsp;
+				<input ng-show="showSearchbox" ng-model="searchItems" type="search" id="searchbox" placeholder="Search...">
+			</div>
+
+			<div ng-click="clearAll();" ng-class="{isIconActive: nav.isActive('/watched')}" id="loadWatched" class="nav-item nav-item-icon l-position-relative">
+				<a href="#/watched">
+					<i class="action-icon fa fa-eye" aria-hidden="true"></i>
+					<span class="sr-only">Watched</span>
+				</a>
+			</div>
+
+			<div ng-click="clearAll();" ng-class="{isIconActive: nav.isActive('/favorites')}" id="loadFavorites" class="nav-item nav-item-icon l-position-relative">
+				<a href="#/favorites">
+					<i class="fa fa-heart" aria-hidden="true"></i>
+					<span class="sr-only">Favorites</span>
+				</a>
+			</div>
+
+		</nav>
+
+	</header>
+	
+	<main ng-view id="main">
+
+		
+
+	</main>
+
+	<footer id="footer"></footer>
+
+</body>
+</html>

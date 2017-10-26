@@ -1,0 +1,53 @@
+<section id="itemPreview">
+
+	<div class="preview-container">
+		<div class="l-content-holder">
+
+			<div ng-repeat="item in preview" class="preview-item">
+
+				<a ng-click="removeFromPreview()" href="javascript:void(0)" class="close-button"><i class="fa fa-times fa-2x" aria-hidden="true" ></i></a>
+
+				<img class="preview-img" ng-src="images/{{item.imgUrl}}" alt="{{item.name}} - Poster"/>
+
+				<div class="preview-text">
+
+					<h1 class="preview-title"> {{item.name}} </h1>
+
+	                <ul class="preview-details">
+	                    <li class="detail"><i class="fa fa-film" aria-hidden="true"></i>&nbsp; {{item.genre}} </li>
+	                    <li class="detail"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; {{item.rating}} </li>
+	                    <li class="detail"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{item.duration}} </li>
+	                    <li class="detail"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; {{item.release_date}} </li>
+	                </ul>
+
+	                <p class="preview-description"> {{item.description}} </p>
+
+	                <div class="preview-footer">
+
+	                	<a ng-click="addToFavorites(item)" ng-class="{isItemSelected: fav.isActive(item)}" href="javascript:void(0)" class="preview-action">
+	                		<i class="fa fa-heart" aria-hidden="true"></i>
+		    				<span>Add to favorites</span>
+		    			</a>
+
+		    			<a ng-click="addToWatched(item)" ng-class="{isItemSelected: wtc.isActive(item)}" href="javascript:void(0)" class="preview-action">
+		                	<i class="fa fa-eye" aria-hidden="true"></i>
+			        		<span>Mark as watched</span>
+			        	</a>
+
+			        	<a href=" {{item.imdb}} " target="_blank" class="imdb-link"><img src="images/imdb.png" /></a>
+
+			        	<a ng-click="addToTrailer(item)" href="#/trailer" class="watch-trailer">
+			        		<i class="fa fa-play" aria-hidden="true"></i> 
+			        		<span>Watch Trailer</span>
+			        	</a>
+
+			        </div>
+
+                </div>
+
+			</div>
+
+		</div>
+	</div>
+
+</section>

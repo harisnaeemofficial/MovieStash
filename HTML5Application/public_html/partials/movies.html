@@ -1,0 +1,45 @@
+<section id="moviesContainer">
+
+	<div class="iscroll-wrapper" iscroll>
+		<div class="iscroll-scrollder">
+			<div class="l-content-holder">		
+
+				<ul class="grid">
+
+				    <li ng-repeat="item in movies" class="grid-item">
+				    	
+				    	<div class="grid-item-img  l-position-relative">
+				        	<div ng-click="addToPreview(item); goToPreview('/preview')" class="img-overlay">
+
+				        		<i ng-click="addToWatched(item); $event.stopPropagation();" ng-class="{isItemSelected: wtc.isActive(item)}" class="action-icon fa fa-eye" aria-hidden="true"></i>
+				        		<span class="icon-tooltip">Mark as watched</span>
+
+				        		<i ng-click="addToFavorites(item); $event.stopPropagation();" ng-class="{isItemSelected: fav.isActive(item)}" mg-mouseover="addTooltips();" class="action-icon fa fa-heart" aria-hidden="true"></i>
+				    			<span class="icon-tooltip">Add to favorites</span>
+
+				    			<div ng-click="$event.stopPropagation();" class="stars-rating">
+				    				<span class="star"></span>
+				    				<span class="star"></span>
+				    				<span class="star"></span>
+				    				<span class="star"></span>
+				    				<span class="star"></span>
+				    			</div>
+
+				        		<p ng-click="$event.stopPropagation();" class="item-rating"> {{item.rating}} </p>
+
+				        	</div>
+				        	<img ng-src="images/{{item.imgUrl}}" alt="{{item.name}} - Poster"/>
+				        </div>
+
+				    	<h5 ng-click="addToPreview(item); goToPreview('/preview')" class="grid-item-name"> {{item.name}} </h5>
+				    	<p class="grid-item-year"> {{item.release_date}} </p>
+
+				    </li>
+
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+</section>

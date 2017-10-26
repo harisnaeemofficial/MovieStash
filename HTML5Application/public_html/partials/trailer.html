@@ -1,0 +1,21 @@
+<section id="watchTrailer">
+
+	<div class="trailer-container">
+
+		<div class="l-content-holder">
+
+			<div ng-repeat="item in trailer" class="trailer-item">
+	
+				<a ng-click="removeFromTrailer()" href="#" class="close-button close-button-trailer">
+					<i class="fa fa-times fa-2x" aria-hidden="true" ></i>
+				</a>
+				
+				<iframe id="video" class="video" width="840" height="475" src="{{item.videoUrl}}"></iframe>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
